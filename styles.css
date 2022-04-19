@@ -1,0 +1,391 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body{
+    background-color: rgb(175, 231, 231);
+  }
+  
+  .container {
+    /* height: 100vh; */
+    height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 100);
+    /* background-color: rgb(175, 231, 231); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .app-container {
+    /* background-color: #dadada; */
+    /* overflow-y: scroll; */
+    width: 20rem;
+    /* height: 30rem; */
+    position: absolute;
+  }
+  
+  .weather-container {
+    height: 19rem;
+    background-image: url(./assets/img/rain.gif);
+    background-position: right;
+    background-size: cover;
+    color: #fff;
+    position: relative;
+    /* margin-bottom: 1rem; */
+  }
+  
+  .weather-container-bg{
+    height: 19rem;
+    opacity: .4;
+    position: absolute;
+    width: 100%;
+    opacity: .5;
+    background-color: black;
+  }
+  
+  .weather-menu {
+    height: 15%;
+    /* background-color: rgb(7, 16, 102); */
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .location-weather,
+  .city,
+  .location {
+    /* width: 33%; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .location-weather {
+    /* background-color: brown; */
+    width: 20%;
+  }
+  
+  .city {
+    /* background-color: springgreen; */
+    width: 60%;
+  }
+  
+  .city p, .todo-title{
+    font-weight: 600;
+      font-size: unset;
+      font-family: system-ui;
+  }
+  
+  .location {
+    /* background-color: steelblue; */
+    width: 20%;
+  }
+  
+  .icon{
+    filter: invert(100%) sepia(0%) saturate(7427%) hue-rotate(102deg) brightness(121%) contrast(118%);
+  }
+  
+  .weather-date{
+    width: 100%;
+    height: 100%;
+    /* background-color:seagreen ; */
+    position: absolute;
+    /* z-index: 2; */
+    display: flex;
+    justify-content: center;
+      align-items: center;
+  }
+  
+  .time{
+    font-size: 3.1rem;
+      font-weight: 100;
+      font-family: system-ui;
+  }
+  
+  .date-time{
+    text-align: center;
+    font-family: system-ui;
+  }
+  
+  .todo-container{
+    overflow-y: scroll;
+    min-height: 1rem;
+    max-height: 11.5rem;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    background-color: #dadada;
+  }
+  
+  .todo-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .todo-item{
+    background-color: rgb(255 254 254);
+    width: 100%;
+    height: 6.5rem;
+    margin-bottom: 0.25rem;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .todo-item-content{
+    /* background-color: brown; */
+      height: 80%;
+      display: flex;
+  }
+  
+  .todo-label{
+    width: 2.5%;
+      height: 100%;
+      /* background-color: #87ba79; */
+      background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+  }
+  
+  .todo-icon{
+    /* background: #e7afaf; */
+      width: 25%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .todo-svg{
+    filter: invert(86%) sepia(5%) saturate(18%) hue-rotate(314deg) brightness(84%) contrast(79%);
+  }
+  
+  .todo-description-container{
+      height: 100%;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+  }
+  
+  .todo-description{
+      color: darkgray;
+      font-size: 0.78rem;
+      font-family: system-ui;
+  }
+  
+  .todo-time-container{
+    /* background-color: chocolate; */
+      height: 100%;
+      width: 22.5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .todo-time{
+    color: darkgray;
+      font-size: 1rem;
+      font-family: system-ui;
+      font-weight: 400;
+  }
+
+  .todo-completed{
+    background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    color: white;
+    text-decoration: line-through;
+  }
+
+  .todo-completed p{
+    color: white;
+  }
+
+  .todo-completed img{
+    filter: invert(98%) sepia(2%) saturate(0%) hue-rotate(18deg) brightness(103%) contrast(101%);
+  }
+  
+  .add-activity-container{
+      /* background-color: rgba(165, 42, 42, 0.61); */
+      height: 2rem;
+      width: 100%;
+      position: absolute;
+      bottom: -1rem;
+      display: flex;
+      justify-content: center;
+      height: 3.3rem;
+      bottom: -1.5rem;
+  }
+  
+  .add-activity,
+  .create-todo-confirm{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* font-weight: 600; */
+      font-size: unset;
+      font-family: system-ui;
+      /* background-color: blue; */
+      background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+      width: 61%;
+      height: 3.3rem;
+      cursor: pointer;
+      border-radius: 3rem;
+  }
+  
+  .space{
+    background-color: #fff;
+    height: 1rem;
+  }
+
+  .todo-pending-complete-buttons-container{
+    height: 2rem;
+    display: flex;
+    margin-top: 0.18rem;
+  }
+
+  .pending-button{
+    height: 100%;
+    width: 50%;
+    background-image: linear-gradient(to left, #BDBBBE 0%, #9D9EA3 100%), radial-gradient(88% 271%, rgba(255, 255, 255, 0.25) 0%, rgba(254, 254, 254, 0.25) 1%, rgba(0, 0, 0, 0.25) 100%), radial-gradient(50% 100%, rgba(255, 255, 255, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%);
+    background-blend-mode: normal, lighten, soft-light;
+  }
+
+  .complete-button{
+      height: 100%;
+      width: 50%;  
+      /* background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%); */
+      /* background-image: linear-gradient(to left, #BDBBBE 0%, #9D9EA3 100%), radial-gradient(88% 271%, rgba(255, 255, 255, 0.25) 0%, rgba(254, 254, 254, 0.25) 1%, rgba(0, 0, 0, 0.25) 100%), radial-gradient(50% 100%, rgba(255, 255, 255, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%);
+      background-blend-mode: normal, lighten, soft-light; */
+      background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+      cursor: pointer;
+  }
+
+  .pending-p, .complete-p{
+    font-size: 0.75rem;
+    font-weight: 300;
+    font-family: system-ui;
+    color: white;
+  }
+
+  .pending-button, .complete-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+  .create-todo{
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(120deg, #13547a 0%, #80d0c7 200%);
+    color: white;
+  }
+
+  .create-todo-content{
+    height: 90%;
+    width: 90%;
+    /* background-color: rgb(121, 11, 11); */
+  }
+
+  .add-activity-title{
+    font-size: 1.3rem;;
+    font-family: system-ui;
+    height: 3.5rem;
+    text-align: center;
+  }
+
+  input{    width: 100%;
+    background: transparent;
+    color: rgb(255, 255, 255);;
+    outline: 0;
+    border-width: 0 0 1px;
+    border-color: #3686b4;
+    font-size: smaller;
+    font-family: system-ui;
+    margin-bottom: 2rem;
+}
+
+input:focus{
+  border-color: rgb(227 227 227);
+}
+
+::placeholder, .create-todo-icons-container p { 
+  color: rgb(144, 157, 187);
+  font-style: italic;
+}
+
+.create-todo-icons-container{
+  height: 50%;
+    /* background: black; */
+}
+
+.create-todo-time{
+  width: 45%;
+}
+
+.create-todo-button{
+  display: flex;
+  justify-content: center;
+  align-items: self-end;
+  color: white;
+  /* height: 25%; */
+}
+
+.todo-icon-menu{
+  margin-top: 0.8rem;
+  display: flex;
+}
+
+.arrow{
+  width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow img{
+  width: 0.7rem;
+  filter: invert(100%) sepia(0%) saturate(7427%) hue-rotate(102deg) brightness(121%) contrast(118%);
+  cursor: pointer;
+}
+
+.rotate{
+animation-name: rotation;
+animation-duration: 0.1s;
+animation-fill-mode: forwards;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotateZ(0deg);
+  }
+
+  to {
+    transform: rotateZ(87deg);
+  }
+}
+
+.icons-to-select{
+  margin-top: 1rem;
+}
+
+.icons-to-select-items{
+  display: flex;
+}
+
+.icon-to-select{
+  width: 2.5rem;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    filter: invert(86%) sepia(5%) saturate(18%) hue-rotate(314deg) brightness(84%) contrast(79%);
+}
+
+.icon-to-select:hover{
+  filter: invert(100%) sepia(0%) saturate(7427%) hue-rotate(102deg) brightness(121%) contrast(118%);
+}

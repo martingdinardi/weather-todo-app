@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do app</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="app-container">
+        <div class="create-todo-container" hidden>
+          <div class="create-todo">
+            <div class="create-todo-content">
+              <div class="add-activity-title">
+                <p>New activity</p>
+              </div>
+              <div class="create-todo-inputs">
+                <input
+                  type="text"
+                  class="create-todo-title"
+                  placeholder="Activity title"
+                />
+                <input
+                  type="text"
+                  class="create-todo-description"
+                  placeholder="Activity description"
+                />
+              </div>
+              <div class="create-todo-icons-container">
+                <p>Select an icon</p>
+                <div class="todo-icon-menu">
+                  <div class="icon-selected">
+                    <img src="assets/img/cooking.svg" class="icon" />
+                  </div>
+                  <div class="arrow">
+                    <img src="assets/img/arrow.svg" class="arrow-icon" />
+                  </div>
+                </div>
+                <div class="icons-to-select" hidden>
+                  <div class="icons-to-select-items">
+                    <div class="icon-to-select">
+                      <img src="assets/img/cooking.svg" class="" />
+                    </div>
+                    <div class="icon-to-select">
+                      <img src="assets/img/fitness-ico.svg" class="" />
+                    </div>
+                    <div class="icon-to-select">
+                      <img src="assets/img/grocery-ico.svg" class="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="create-todo-button">
+                <div class="create-todo-confirm">
+                  <p class="add-activity-p">Add</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="weather-container">
+          <div class="weather-container-bg"></div>
+          <div class="weather-menu">
+            <div class="location-weather">
+              <img src="./assets/img/rainy.svg" class="icon" />
+            </div>
+            <div class="city"><p>Piriapolis, Uruguay</p></div>
+            <div class="location">
+              <img src="./assets/img/location.svg" class="icon" />
+            </div>
+          </div>
+          <div class="weather-date">
+            <div class="date-time">
+              <p class="time">09:00</p>
+              <p>mon, 11 Apr 2022</p>
+            </div>
+          </div>
+          <div class="add-activity-container">
+            <div class="add-activity">
+              <p class="add-activity-p">Add activity</p>
+            </div>
+          </div>
+        </div>
+        <div class="space"></div>
+        <div class="todo-container">
+          <!--           <div class="todo-item">
+            <div class="todo-item-content">
+              <div class="todo-label"></div>
+              <div class="todo-icon">
+                <img src="./assets/img/fitness-ico.svg" class="todo-svg" />
+              </div>
+              <div class="todo-description-container">
+                <p class="todo-title">Fitness Center</p>
+                <p class="todo-description">
+                  Go to the gym and do my workout there.
+                </p>
+              </div>
+              <div class="todo-time-container">
+                <p class="todo-time">08:00</p>
+              </div>
+            </div>
+          </div>
+          <div class="todo-item">
+            <div class="todo-item-content">
+              <div class="todo-label"></div>
+              <div class="todo-icon">
+                <img src="./assets/img/grocery-ico.svg" class="todo-svg" />
+              </div>
+              <div class="todo-description-container">
+                <p class="todo-title">Grocery Store</p>
+                <p class="todo-description">Apples, Oranges and Onions.</p>
+              </div>
+              <div class="todo-time-container">
+                <p class="todo-time">10:00</p>
+              </div>
+            </div>
+          </div>
+           -->
+        </div>
+        <div class="todo-pending-complete-buttons-container">
+          <div class="pending-button">
+            <div class="pending-p">Pending</div>
+          </div>
+          <div class="complete-button">
+            <div class="complete-p">Completed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./dist/main.js"></script>
+  </body>
+</html>
