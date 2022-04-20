@@ -1,3 +1,5 @@
+import { Todo } from "../classes";
+import { todoList } from "../src/index";
 const todo_container = document.querySelector(".todo-container");
 const add_activity = document.querySelector(".add-activity");
 const app_container = document.querySelector(".app-container");
@@ -6,6 +8,12 @@ const arrow_icon = document.querySelector(".arrow-icon");
 const icons_to_select = document.querySelector(".icons-to-select");
 const icon_to_select = document.querySelectorAll(".icon-to-select");
 const icon_selected = document.querySelector(".icon-selected");
+const title_input = document.querySelector(".create-todo-title");
+const create_todo_description = document.querySelector(
+  ".create-todo-description"
+);
+const create_todo_confirm = document.querySelector(".create-todo-confirm");
+const selected_ico = document.querySelector(".selected-ico");
 
 export const crearTodoHtml = (todo) => {
   const htmlTodo = `
@@ -47,10 +55,28 @@ arrow_icon.addEventListener("click", () => {
 
 icon_to_select.forEach((element) => {
   element.addEventListener("click", (e) => {
-    console.log(e.target.src);
-    console.log(e.target);
+    /*  console.log(e.target.src);
+    console.log(e.target); */
     icons_to_select.setAttribute("hidden", "");
     arrow_icon.classList.remove("rotate");
-    icon_selected.innerHTML = `<img src=${e.target.src} class="icon"> `;
+    icon_selected.innerHTML = `<img src=${e.target.src} class="icon selected-ico"> `;
   });
+});
+
+create_todo_confirm.addEventListener("click", (e) => {
+  if (
+    title_input.value.length > 0 &&
+    create_todo_description.value.length > 0
+  ) {
+    const nuevoTodo = new Todo(
+      title_input.value,
+      create_todo_description.value,
+      icon_selected.children[0].src
+    );
+    todoList.nuevoTodo(nuevoTodo);
+    console.log(todoList);
+    crearTodoHtml(nuevoTodo);
+    create_todo_container.setAttribute("hidden", "");
+    console.log(icon_selected[0]);
+  }
 });
