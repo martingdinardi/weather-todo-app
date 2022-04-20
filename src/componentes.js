@@ -14,7 +14,6 @@ const create_todo_description = document.querySelector(
 );
 const create_todo_confirm = document.querySelector(".create-todo-confirm");
 const selected_ico = document.querySelector(".selected-ico");
-/* const checkbox = document.querySelector(".check"); */
 
 export const crearTodoHtml = (todo) => {
   const htmlTodo = `
@@ -34,6 +33,7 @@ export const crearTodoHtml = (todo) => {
       </div>
       <div class="todo-time-container">
         <p class="todo-time"><input type="checkbox" class="check"></p>
+        <img src="./assets/img/trash.svg" class="todo-svg trash-ico" />
       </div>
     </div>
   </div>
@@ -85,12 +85,25 @@ create_todo_confirm.addEventListener("click", (e) => {
 });
 
 todo_container.addEventListener("click", (e) => {
-  const elemento = e.target.localName;
+  const elemento = e.target.classList[1];
   const todoElemento =
     e.target.parentElement.parentElement.parentElement.parentElement;
+  /* console.log(elemento); */
   const todoId = todoElemento.getAttribute("data-id");
   if (todoId != null) {
     todoList.marcarCompletado(todoId);
     todoElemento.classList.toggle("todo-completed");
+    /* console.log(trash_ico); */
+  } else if (elemento == "trash-ico") {
+    const elementoid =
+      e.target.parentElement.parentElement.parentElement.getAttribute(
+        "data-id"
+      );
+    /* console.log("first"); */
+    todoList.eliminarTodo(elementoid);
+    todo_container.removeChild(todoElemento);
+    console.log(todo_container.childNodes);
   }
+  console.log();
+  console.log(todoList);
 });
