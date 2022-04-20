@@ -14,6 +14,7 @@ const create_todo_description = document.querySelector(
 );
 const create_todo_confirm = document.querySelector(".create-todo-confirm");
 const selected_ico = document.querySelector(".selected-ico");
+/* const checkbox = document.querySelector(".check"); */
 
 export const crearTodoHtml = (todo) => {
   const htmlTodo = `
@@ -30,7 +31,7 @@ export const crearTodoHtml = (todo) => {
         </p>
       </div>
       <div class="todo-time-container">
-        <p class="todo-time">${todo.tarea_time}</p>
+        <p class="todo-time"><input type="checkbox" class="check"></p>
       </div>
     </div>
   </div>
@@ -80,3 +81,7 @@ create_todo_confirm.addEventListener("click", (e) => {
     console.log(icon_selected[0]);
   }
 });
+
+/* checkbox.addEventListener("click", () => {
+  console.log("asdas");
+}); */
