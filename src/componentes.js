@@ -18,7 +18,9 @@ const selected_ico = document.querySelector(".selected-ico");
 
 export const crearTodoHtml = (todo) => {
   const htmlTodo = `
-    <div class="todo-item ${todo.completado ? "todo-completed" : ""}">
+    <div class="todo-item ${todo.completado ? "todo-completed" : ""}" data-id=${
+    todo.id
+  }>
     <div class="todo-item-content">
       <div class="todo-label"></div>
       <div class="todo-icon">
@@ -78,10 +80,17 @@ create_todo_confirm.addEventListener("click", (e) => {
     console.log(todoList);
     crearTodoHtml(nuevoTodo);
     create_todo_container.setAttribute("hidden", "");
-    console.log(icon_selected[0]);
+    /* console.log(icon_selected[0]); */
   }
 });
 
-/* checkbox.addEventListener("click", () => {
-  console.log("asdas");
-}); */
+todo_container.addEventListener("click", (e) => {
+  const elemento = e.target.localName;
+  const todoElemento =
+    e.target.parentElement.parentElement.parentElement.parentElement;
+  const todoId = todoElemento.getAttribute("data-id");
+  if (todoId != null) {
+    todoList.marcarCompletado(todoId);
+    todoElemento.classList.toggle("todo-completed");
+  }
+});
