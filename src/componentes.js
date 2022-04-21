@@ -144,3 +144,21 @@ pending_button.addEventListener("click", (e) => {
   }
   /* console.log(pending_button.classList[1]); */
 });
+
+delete_all_todos_container.addEventListener("click", () => {
+  /* console.log("first"); */
+  todoList.eliminarCompletados();
+  /* console.log(todoList); */
+  for (let i = todo_container.children.length - 1; i >= 0; i--) {
+    const elemento_padre = todo_container.children[i];
+    const elemento = elemento_padre.children;
+    /* console.log(elemento[0]); */
+    if (elemento[0].classList.contains("todo-completed")) {
+      todo_container.removeChild(elemento_padre);
+      if (todoList.todos.length === 0) {
+        /* console.log("todo 1 length"); */
+        no_todo_container.removeAttribute("hidden");
+      }
+    }
+  }
+});
