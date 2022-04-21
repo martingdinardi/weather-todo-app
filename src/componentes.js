@@ -14,6 +14,12 @@ const create_todo_description = document.querySelector(
 );
 const create_todo_confirm = document.querySelector(".create-todo-confirm");
 const no_todo_container = document.querySelector(".no-todo-container");
+const complete_button = document.querySelector(".complete-button");
+const pending_button = document.querySelector(".pending");
+const delete_all_todos_container = document.querySelector(
+  ".delete-all-todos-container"
+);
+//
 
 export const crearTodoHtml = (todo) => {
   const htmlTodo = `
@@ -110,6 +116,31 @@ todo_container.addEventListener("click", (e) => {
       no_todo_container.removeAttribute("hidden");
     }
   }
-  console.log();
-  console.log(todoList);
+  /*   console.log();
+  console.log(todoList); */
+});
+
+complete_button.addEventListener("click", () => {
+  delete_all_todos_container.removeAttribute("hidden");
+  /* complete_button.classList.toggle("pending-button");
+  complete_button.classList.toggle("complete-button"); */
+  /* console.log(complete_button.classList[0]); */
+  if (complete_button.classList[0] == "complete-button") {
+    complete_button.classList.remove("complete-button");
+    complete_button.classList.add("pending-button");
+    pending_button.classList.remove("pending-button");
+    pending_button.classList.add("complete-button");
+  }
+  /* console.log(complete_button); */
+});
+
+pending_button.addEventListener("click", (e) => {
+  if (pending_button.classList[1] == "complete-button") {
+    delete_all_todos_container.setAttribute("hidden", "");
+    complete_button.classList.add("complete-button");
+    complete_button.classList.remove("pending-button");
+    pending_button.classList.add("pending-button");
+    pending_button.classList.remove("complete-button");
+  }
+  /* console.log(pending_button.classList[1]); */
 });
