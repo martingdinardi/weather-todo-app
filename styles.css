@@ -405,3 +405,21 @@ animation-fill-mode: forwards;
 .check{
 accent-color: #247657;
 }
+
+.no-todo-container{
+  background: white;
+}
+
+.no-todo{
+  width: 100%;
+    height: 6.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-todo p{
+  font-family: system-ui;
+    font-size: smaller;
+    color: lightslategray;
+}

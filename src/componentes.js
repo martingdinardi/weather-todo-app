@@ -13,7 +13,7 @@ const create_todo_description = document.querySelector(
   ".create-todo-description"
 );
 const create_todo_confirm = document.querySelector(".create-todo-confirm");
-const selected_ico = document.querySelector(".selected-ico");
+const no_todo_container = document.querySelector(".no-todo-container");
 
 export const crearTodoHtml = (todo) => {
   const htmlTodo = `
@@ -77,10 +77,14 @@ create_todo_confirm.addEventListener("click", (e) => {
       icon_selected.children[0].src
     );
     todoList.nuevoTodo(nuevoTodo);
-    console.log(todoList);
+    /* console.log(todoList); */
     crearTodoHtml(nuevoTodo);
     create_todo_container.setAttribute("hidden", "");
-    /* console.log(icon_selected[0]); */
+    /* console.log(todoList.todos.length); */
+    if (todoList.todos.length === 1) {
+      /* console.log("todo 1 length"); */
+      no_todo_container.setAttribute("hidden", "");
+    }
   }
 });
 
@@ -99,10 +103,12 @@ todo_container.addEventListener("click", (e) => {
       e.target.parentElement.parentElement.parentElement.getAttribute(
         "data-id"
       );
-    /* console.log("first"); */
     todoList.eliminarTodo(elementoid);
     todo_container.removeChild(todoElemento);
-    console.log(todo_container.childNodes);
+    if (todoList.todos.length === 0) {
+      /* console.log("todo 1 length"); */
+      no_todo_container.removeAttribute("hidden");
+    }
   }
   console.log();
   console.log(todoList);
