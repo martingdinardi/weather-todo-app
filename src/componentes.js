@@ -105,6 +105,7 @@ todo_container.addEventListener("click", (e) => {
   if (todoId != null) {
     /* todoElemento.classList.toggle("todo-completed"); */
     todo_container.removeChild(todoElemento.parentElement);
+    console.log(todoList);
     if (todo_container.childElementCount == 1) {
       no_todo_container.removeAttribute("hidden");
     }
@@ -116,7 +117,9 @@ todo_container.addEventListener("click", (e) => {
       );
     todoList.eliminarTodo(elementoid);
     todo_container.removeChild(todoElemento);
-    if (todoList.todos.length === 0) {
+    if (
+      /* todoList.todos.length === 0 */ todo_container.childElementCount == 1
+    ) {
       /* console.log("todo 1 length"); */
       no_todo_container.removeAttribute("hidden");
     }

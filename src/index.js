@@ -14,4 +14,5 @@ todoList.nuevoTodo(task);
 crearTodoHtml(task); */
 
 export const todoList = new TodoList();
-console.log(todoList.todos.length);
+/* console.log(todoList.todos.length); */
+console.log(todoList);
