@@ -105,11 +105,11 @@ todo_container.addEventListener("click", (e) => {
   if (todoId != null) {
     /* todoElemento.classList.toggle("todo-completed"); */
     todo_container.removeChild(todoElemento.parentElement);
-    console.log(todoList);
+    /* console.log(todoList); */
     if (todo_container.childElementCount == 1) {
       no_todo_container.removeAttribute("hidden");
     }
-    console.log(todo_container.childElementCount);
+    /* console.log(todo_container.childElementCount); */
   } else if (elemento == "trash-ico") {
     const elementoid =
       e.target.parentElement.parentElement.parentElement.getAttribute(
@@ -130,12 +130,22 @@ todo_container.addEventListener("click", (e) => {
 
 complete_button.addEventListener("click", () => {
   completeIsPressed = true;
-  console.log(completeIsPressed);
+  /* console.log(completeIsPressed); */
   delete_all_todos_container.removeAttribute("hidden");
   /* complete_button.classList.toggle("pending-button");
   complete_button.classList.toggle("complete-button"); */
   /* console.log(complete_button.classList[0]); */
   if (complete_button.classList[0] == "complete-button") {
+    for (let i = todo_container.children.length - 1; i >= 0; i--) {
+      const elemento_padre = todo_container.children[i];
+      const elemento = elemento_padre.children;
+      if (elemento[0].classList[0] == "todo-item") {
+        elemento_padre.setAttribute("hidden", "");
+        /* if (todoList.todos.length === 0) {
+          no_todo_container.removeAttribute("hidden");
+        } */
+      }
+    }
     complete_button.classList.remove("complete-button");
     complete_button.classList.add("pending-button");
     pending_button.classList.remove("pending-button");
@@ -145,6 +155,16 @@ complete_button.addEventListener("click", () => {
 });
 
 pending_button.addEventListener("click", (e) => {
+  for (let i = todo_container.children.length - 1; i >= 0; i--) {
+    const elemento_padre = todo_container.children[i];
+    const elemento = elemento_padre.children;
+    if (elemento[0].classList[0] == "todo-item") {
+      elemento_padre.removeAttribute("hidden", "");
+      /* if (todoList.todos.length === 0) {
+        no_todo_container.removeAttribute("hidden");
+      } */
+    }
+  }
   completeIsPressed = false;
   console.log(completeIsPressed);
   if (pending_button.classList[1] == "complete-button") {
