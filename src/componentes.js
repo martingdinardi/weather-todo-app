@@ -103,6 +103,9 @@ todo_container.addEventListener("click", (e) => {
   if (todoId != null) {
     todoElemento.classList.toggle("todo-completed");
     todoElemento.parentElement.setAttribute("hidden", "");
+    if (elementosCompletados == 0) {
+      no_todo_container.removeAttribute("hidden");
+    }
     if (completeIsPressed == true) {
       elementosCompletados--;
       elementosPendientes++;
@@ -112,9 +115,6 @@ todo_container.addEventListener("click", (e) => {
     }
     console.log(`elementosCompletados = ${elementosCompletados}`);
     console.log(`elementosPendientes = ${elementosPendientes}`);
-    if (todo_container.childElementCount == 1) {
-      no_todo_container.removeAttribute("hidden");
-    }
   } else if (elemento == "trash-ico") {
     const elementoid =
       e.target.parentElement.parentElement.parentElement.getAttribute(
