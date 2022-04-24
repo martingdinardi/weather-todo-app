@@ -64,8 +64,6 @@ arrow_icon.addEventListener("click", () => {
 
 icon_to_select.forEach((element) => {
   element.addEventListener("click", (e) => {
-    /*  console.log(e.target.src);
-    console.log(e.target); */
     icons_to_select.setAttribute("hidden", "");
     arrow_icon.classList.remove("rotate");
     icon_selected.innerHTML = `<img src=${e.target.src} class="icon selected-ico"> `;
@@ -83,17 +81,13 @@ create_todo_confirm.addEventListener("click", (e) => {
       icon_selected.children[0].src
     );
     todoList.nuevoTodo(nuevoTodo);
-    /* console.log(todoList); */
-    if (completeIsPressed == false) {
-      crearTodoHtml(nuevoTodo);
-      no_todo_container.setAttribute("hidden", "");
+    const elementoCreado = crearTodoHtml(nuevoTodo);
+    console.log(elementoCreado.children[0]);
+    no_todo_container.setAttribute("hidden", "");
+    if (completeIsPressed == true) {
+      elementoCreado.setAttribute("hidden", "");
     }
     create_todo_container.setAttribute("hidden", "");
-    /* console.log(todoList.todos.length); */
-    if (todoList.todos.length === 1 && completeIsPressed == false) {
-      /* console.log("todo 1 length"); */
-      /* no_todo_container.setAttribute("hidden", ""); */
-    }
   }
 });
 
@@ -103,13 +97,11 @@ todo_container.addEventListener("click", (e) => {
     e.target.parentElement.parentElement.parentElement.parentElement;
   const todoId = todoElemento.getAttribute("data-id");
   if (todoId != null) {
-    /* todoElemento.classList.toggle("todo-completed"); */
-    todo_container.removeChild(todoElemento.parentElement);
-    /* console.log(todoList); */
+    todoElemento.classList.toggle("todo-completed");
+    todoElemento.parentElement.setAttribute("hidden", "");
     if (todo_container.childElementCount == 1) {
       no_todo_container.removeAttribute("hidden");
     }
-    /* console.log(todo_container.childElementCount); */
   } else if (elemento == "trash-ico") {
     const elementoid =
       e.target.parentElement.parentElement.parentElement.getAttribute(
@@ -120,27 +112,24 @@ todo_container.addEventListener("click", (e) => {
     if (
       /* todoList.todos.length === 0 */ todo_container.childElementCount == 1
     ) {
-      /* console.log("todo 1 length"); */
       no_todo_container.removeAttribute("hidden");
     }
   }
-  /*   console.log();
-  console.log(todoList); */
 });
 
 complete_button.addEventListener("click", () => {
   completeIsPressed = true;
-  /* console.log(completeIsPressed); */
+  console.log(completeIsPressed);
   delete_all_todos_container.removeAttribute("hidden");
-  /* complete_button.classList.toggle("pending-button");
-  complete_button.classList.toggle("complete-button"); */
-  /* console.log(complete_button.classList[0]); */
   if (complete_button.classList[0] == "complete-button") {
     for (let i = todo_container.children.length - 1; i >= 0; i--) {
       const elemento_padre = todo_container.children[i];
       const elemento = elemento_padre.children;
       if (elemento[0].classList[0] == "todo-item") {
         elemento_padre.setAttribute("hidden", "");
+      }
+      if (elemento[0].classList[1] == "todo-completed") {
+        elemento_padre.removeAttribute("hidden");
         /* if (todoList.todos.length === 0) {
           no_todo_container.removeAttribute("hidden");
         } */
@@ -151,22 +140,27 @@ complete_button.addEventListener("click", () => {
     pending_button.classList.remove("pending-button");
     pending_button.classList.add("complete-button");
   }
-  /* console.log(complete_button); */
 });
 
 pending_button.addEventListener("click", (e) => {
+  completeIsPressed = false;
+  console.log(completeIsPressed);
   for (let i = todo_container.children.length - 1; i >= 0; i--) {
     const elemento_padre = todo_container.children[i];
     const elemento = elemento_padre.children;
-    if (elemento[0].classList[0] == "todo-item") {
+    if (
+      elemento[0].classList[1] != "todo-completed" &&
+      elemento[0].classList != "no-todo"
+    ) {
       elemento_padre.removeAttribute("hidden", "");
       /* if (todoList.todos.length === 0) {
         no_todo_container.removeAttribute("hidden");
       } */
+    } else if (elemento[0].classList[1] == "todo-completed") {
+      elemento_padre.setAttribute("hidden", "");
     }
   }
-  completeIsPressed = false;
-  console.log(completeIsPressed);
+
   if (pending_button.classList[1] == "complete-button") {
     delete_all_todos_container.setAttribute("hidden", "");
     complete_button.classList.add("complete-button");
@@ -174,21 +168,16 @@ pending_button.addEventListener("click", (e) => {
     pending_button.classList.add("pending-button");
     pending_button.classList.remove("complete-button");
   }
-  /* console.log(pending_button.classList[1]); */
 });
 
 delete_all_todos_container.addEventListener("click", () => {
-  /* console.log("first"); */
   todoList.eliminarCompletados();
-  /* console.log(todoList); */
   for (let i = todo_container.children.length - 1; i >= 0; i--) {
     const elemento_padre = todo_container.children[i];
     const elemento = elemento_padre.children;
-    /* console.log(elemento[0]); */
     if (elemento[0].classList.contains("todo-completed")) {
       todo_container.removeChild(elemento_padre);
       if (todoList.todos.length === 0) {
-        /* console.log("todo 1 length"); */
         no_todo_container.removeAttribute("hidden");
       }
     }
