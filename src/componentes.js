@@ -122,8 +122,18 @@ todo_container.addEventListener("click", (e) => {
       );
     todoList.eliminarTodo(elementoid);
     todo_container.removeChild(todoElemento);
-    if (todo_container.childElementCount == 1) {
-      no_todo_container.removeAttribute("hidden");
+    if (completeIsPressed == true) {
+      elementosCompletados--;
+      console.log(elementosCompletados);
+      if (elementosCompletados == 0) {
+        no_todo_container.removeAttribute("hidden");
+      }
+    } else if (completeIsPressed == false) {
+      elementosPendientes--;
+      console.log(elementosPendientes);
+      if (elementosPendientes == 0) {
+        no_todo_container.removeAttribute("hidden");
+      }
     }
   }
 });
@@ -144,6 +154,8 @@ complete_button.addEventListener("click", () => {
         /* if (todoList.todos.length === 0) {
           no_todo_container.removeAttribute("hidden");
         } */
+      } else if (elementosCompletados == 0) {
+        no_todo_container.removeAttribute("hidden");
       }
     }
     complete_button.classList.remove("complete-button");
@@ -155,7 +167,11 @@ complete_button.addEventListener("click", () => {
 
 pending_button.addEventListener("click", (e) => {
   completeIsPressed = false;
+  if (elementosPendientes > 0) {
+    no_todo_container.setAttribute("hidden", "");
+  }
   console.log(completeIsPressed);
+  console.log(`elementosPendientes es mayor a 1 = ${elementosPendientes > 0}`);
   for (let i = todo_container.children.length - 1; i >= 0; i--) {
     const elemento_padre = todo_container.children[i];
     const elemento = elemento_padre.children;
