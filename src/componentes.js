@@ -20,6 +20,8 @@ const delete_all_todos_container = document.querySelector(
   ".delete-all-todos-container"
 );
 let completeIsPressed = false;
+let elementosCompletados = 0;
+let elementosPendientes = 0;
 
 export const crearTodoHtml = (todo) => {
   const htmlTodo = `
@@ -82,13 +84,15 @@ create_todo_confirm.addEventListener("click", (e) => {
     );
     todoList.nuevoTodo(nuevoTodo);
     const elementoCreado = crearTodoHtml(nuevoTodo);
-    console.log(elementoCreado.children[0]);
+    /* console.log(elementoCreado.children[0]); */
     no_todo_container.setAttribute("hidden", "");
     if (completeIsPressed == true) {
       elementoCreado.setAttribute("hidden", "");
     }
     create_todo_container.setAttribute("hidden", "");
   }
+  elementosPendientes++;
+  console.log(`elementosPendientes = ${elementosPendientes}`);
 });
 
 todo_container.addEventListener("click", (e) => {
@@ -99,6 +103,15 @@ todo_container.addEventListener("click", (e) => {
   if (todoId != null) {
     todoElemento.classList.toggle("todo-completed");
     todoElemento.parentElement.setAttribute("hidden", "");
+    if (completeIsPressed == true) {
+      elementosCompletados--;
+      elementosPendientes++;
+    } else if (completeIsPressed == false) {
+      elementosCompletados++;
+      elementosPendientes--;
+    }
+    console.log(`elementosCompletados = ${elementosCompletados}`);
+    console.log(`elementosPendientes = ${elementosPendientes}`);
     if (todo_container.childElementCount == 1) {
       no_todo_container.removeAttribute("hidden");
     }
@@ -109,9 +122,7 @@ todo_container.addEventListener("click", (e) => {
       );
     todoList.eliminarTodo(elementoid);
     todo_container.removeChild(todoElemento);
-    if (
-      /* todoList.todos.length === 0 */ todo_container.childElementCount == 1
-    ) {
+    if (todo_container.childElementCount == 1) {
       no_todo_container.removeAttribute("hidden");
     }
   }
