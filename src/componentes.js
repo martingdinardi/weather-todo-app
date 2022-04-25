@@ -219,6 +219,9 @@ pending_button.addEventListener("click", (e) => {
 
 delete_all_todos_container.addEventListener("click", () => {
   todoList.eliminarCompletados();
+  elementosCompletados = 0;
+  console.log(elementosCompletados);
+  no_todo_container.removeAttribute("hidden");
   for (let i = todo_container.children.length - 1; i >= 0; i--) {
     const elemento_padre = todo_container.children[i];
     const elemento = elemento_padre.children;
