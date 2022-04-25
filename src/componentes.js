@@ -49,7 +49,7 @@ export const crearTodoHtml = (todo) => {
 
   const div = document.createElement("div");
   div.innerHTML = htmlTodo;
-  todo_container.append(div);
+  todo_container.prepend(div);
 
   return div;
 };
