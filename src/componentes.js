@@ -40,21 +40,34 @@ export const crearTodoHtml = (todo) => {
         </p>
       </div>
       <div class="todo-time-container">
-        <p class="todo-time"><input type="checkbox" class="check"></p>
+        <p class="todo-time"><input type="checkbox" class="check" ${
+          todo.completado ? "checked" : ""
+        }></p>
         <img src="./assets/img/trash.svg" class="todo-svg trash-ico" />
       </div>
     </div>
   </div>
     `;
-
   const div = document.createElement("div");
+  if (todo.completado) {
+    elementosCompletados++;
+    div.setAttribute("hidden", "");
+  } else if (todo.completado == false) {
+    elementosPendientes++;
+  } else if (elementosPendientes > 0) {
+    no_todo_container.setAttribute("hidden", "");
+  }
   div.innerHTML = htmlTodo;
   todo_container.prepend(div);
-
   return div;
 };
 
 //Events
+window.addEventListener("load", () => {
+  console.log(elementosPendientes);
+  elementosPendientes > 0 ? no_todo_container.setAttribute("hidden", "") : "";
+});
+
 add_activity.addEventListener("click", () => {
   create_todo_container.removeAttribute("hidden");
 });
@@ -94,7 +107,7 @@ create_todo_confirm.addEventListener("click", (e) => {
     }
     create_todo_container.setAttribute("hidden", "");
   }
-  elementosPendientes++;
+  /* elementosPendientes++; */
   console.log(`elementosPendientes = ${elementosPendientes}`);
 });
 
@@ -106,14 +119,7 @@ todo_container.addEventListener("click", (e) => {
   if (todoId != null) {
     todoElemento.classList.toggle("todo-completed");
     todoElemento.parentElement.setAttribute("hidden", "");
-    /* if (elementosCompletados == 1) {
-      no_todo_container.setAttribute("hidden", "");
-      console.log(elementosCompletados == 1);
-      console.log("Elementos completados - 1");
-    } */
-    /*     if (elementosCompletados == 0) {
-      no_todo_container.removeAttribute("hidden");
-    } */
+    todoList.marcarCompletado(todoId);
     if (completeIsPressed == true) {
       elementosCompletados--;
       elementosPendientes++;
@@ -191,6 +197,9 @@ pending_button.addEventListener("click", (e) => {
   console.log(`elementos pendientes = ${elementosPendientes}`);
   if (elementosPendientes > 0) {
     no_todo_container.setAttribute("hidden", "");
+  }
+  if (elementosPendientes == 0) {
+    no_todo_container.removeAttribute("hidden");
   }
   for (let i = todo_container.children.length - 1; i >= 0; i--) {
     const elemento_padre = todo_container.children[i];
