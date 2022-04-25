@@ -88,6 +88,9 @@ create_todo_confirm.addEventListener("click", (e) => {
     no_todo_container.setAttribute("hidden", "");
     if (completeIsPressed == true) {
       elementoCreado.setAttribute("hidden", "");
+      if (elementosCompletados == 0) {
+        no_todo_container.removeAttribute("hidden");
+      }
     }
     create_todo_container.setAttribute("hidden", "");
   }
@@ -103,15 +106,26 @@ todo_container.addEventListener("click", (e) => {
   if (todoId != null) {
     todoElemento.classList.toggle("todo-completed");
     todoElemento.parentElement.setAttribute("hidden", "");
-    if (elementosCompletados == 0) {
+    /* if (elementosCompletados == 1) {
+      no_todo_container.setAttribute("hidden", "");
+      console.log(elementosCompletados == 1);
+      console.log("Elementos completados - 1");
+    } */
+    /*     if (elementosCompletados == 0) {
       no_todo_container.removeAttribute("hidden");
-    }
+    } */
     if (completeIsPressed == true) {
       elementosCompletados--;
       elementosPendientes++;
+      if (elementosCompletados == 0) {
+        no_todo_container.removeAttribute("hidden");
+      }
     } else if (completeIsPressed == false) {
       elementosCompletados++;
       elementosPendientes--;
+      if (elementosPendientes == 0) {
+        no_todo_container.removeAttribute("hidden");
+      }
     }
     console.log(`elementosCompletados = ${elementosCompletados}`);
     console.log(`elementosPendientes = ${elementosPendientes}`);
@@ -140,8 +154,12 @@ todo_container.addEventListener("click", (e) => {
 
 complete_button.addEventListener("click", () => {
   completeIsPressed = true;
-  console.log(completeIsPressed);
+  console.log(`elementos completados = ${elementosCompletados}`);
+  console.log(`elementos pendientes = ${elementosPendientes}`);
   delete_all_todos_container.removeAttribute("hidden");
+  if (elementosCompletados > 0) {
+    no_todo_container.setAttribute("hidden", "");
+  }
   if (complete_button.classList[0] == "complete-button") {
     for (let i = todo_container.children.length - 1; i >= 0; i--) {
       const elemento_padre = todo_container.children[i];
@@ -156,6 +174,8 @@ complete_button.addEventListener("click", () => {
         } */
       } else if (elementosCompletados == 0) {
         no_todo_container.removeAttribute("hidden");
+      } else if (elementosCompletados == 1) {
+        no_todo_container.setAttribute("hidden", "");
       }
     }
     complete_button.classList.remove("complete-button");
@@ -167,11 +187,11 @@ complete_button.addEventListener("click", () => {
 
 pending_button.addEventListener("click", (e) => {
   completeIsPressed = false;
+  console.log(`elementos completados = ${elementosCompletados}`);
+  console.log(`elementos pendientes = ${elementosPendientes}`);
   if (elementosPendientes > 0) {
     no_todo_container.setAttribute("hidden", "");
   }
-  console.log(completeIsPressed);
-  console.log(`elementosPendientes es mayor a 1 = ${elementosPendientes > 0}`);
   for (let i = todo_container.children.length - 1; i >= 0; i--) {
     const elemento_padre = todo_container.children[i];
     const elemento = elemento_padre.children;
