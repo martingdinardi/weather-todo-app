@@ -21,7 +21,7 @@ const delete_all_todos_container = document.querySelector(
 );
 const time = document.querySelector(".time");
 const date = document.querySelector(".date");
-const today = new Date();
+let today = new Date();
 let completeIsPressed = false;
 let elementosCompletados = 0;
 let elementosPendientes = 0;
@@ -69,10 +69,16 @@ export const crearTodoHtml = (todo) => {
 window.addEventListener("load", () => {
   console.log(elementosPendientes);
   elementosPendientes > 0 ? no_todo_container.setAttribute("hidden", "") : "";
-  time.innerHTML = `${today.getHours()}:${today.getMinutes()}`;
   const dateToday = today.toUTCString().split(" ");
+  const updateTime = () => {
+    today = new Date();
+    let fullDateArray = today.toUTCString().split(" ");
+    let minutes = fullDateArray[4].split(":");
+    time.innerHTML = `${today.getHours()}:${minutes[1]}`;
+    setTimeout(updateTime, 1000);
+  };
+  updateTime();
   date.innerHTML = `${dateToday[0]} ${dateToday[1]} ${dateToday[2]} ${dateToday[3]}`; //mon, 11 Apr 2022
-  console.log(today.toUTCString().split(" "));
 });
 
 add_activity.addEventListener("click", () => {
