@@ -53,10 +53,11 @@
     align-items: center;
     position: absolute;
     width: 100%;
+    z-index: 5;
   }
   
   .location-weather,
-  .city,
+  .city-container,
   .location {
     /* width: 33%; */
     height: 100%;
@@ -70,12 +71,13 @@
     width: 20%;
   }
   
-  .city {
+  .city-container {
     /* background-color: springgreen; */
     width: 60%;
+    display: flex;
   }
   
-  .city p, .todo-title{
+  .city-container p, .todo-title{
     font-weight: 600;
       font-size: unset;
       font-family: system-ui;
@@ -275,7 +277,7 @@
 
   .create-todo{
     position: absolute;
-    z-index: 1;
+    z-index: 7;
     height: 100%;
     width: 100%;
     display: flex;
@@ -435,4 +437,23 @@ accent-color: #247657;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.chose-city{background: transparent;
+border-bottom: 0.1px;
+border-color: white;
+border-style: solid;
+border-left: none;
+border-top: none;
+text-align: center;
+border-right: none;
+color: white;
+font-family: system-ui;
+outline: 0;
+}
+.chose-city::placeholder{
+  color: rgb(255, 255, 255);
+}
+.city{
+  cursor: pointer;
 }
