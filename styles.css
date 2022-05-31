@@ -440,20 +440,20 @@ accent-color: #247657;
 }
 
 .chose-city{background: transparent;
-border-bottom: 0.1px;
-border-color: white;
-border-style: solid;
-border-left: none;
-border-top: none;
+border: none;
 text-align: center;
-border-right: none;
 color: white;
 font-family: system-ui;
 outline: 0;
+width: 6rem;
 }
 .chose-city::placeholder{
   color: rgb(255, 255, 255);
 }
 .city{
   cursor: pointer;
+}
+
+.check-icon{
+  width: 0.7rem;
 }
