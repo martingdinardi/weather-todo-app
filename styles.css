@@ -465,5 +465,14 @@ width: 6rem;
 }
 
 .check-icon{
-  width: 0.7rem;
+  width: 0.9rem;
+}
+
+.select-city-items-holder{
+  display: flex;
+} 
+
+.select-city-icon{
+  display: flex;
+    align-items: self-end;
 }
