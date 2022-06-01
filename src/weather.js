@@ -3,7 +3,8 @@ const select_city = document.querySelector(".select-city");
 const checkIcon = document.querySelector(".check-icon");
 const location_weather = document.querySelector(".location-weather");
 const weather_icon = document.querySelector(".weather-icon");
-//
+const weather_container = document.querySelector(".weather-container");
+//.weather-container
 
 let weather = {
   appKey: "48b287be2a3392698910b87d61c23d37",
@@ -19,8 +20,58 @@ let weather = {
   displayWeather: async function (data) {
     const { name } = data;
     const { icon } = data.weather[0];
-    /*   console.log(weather_icon);
-    console.log(data.weather[0].main); */
+
+    // clear
+    // day
+    if (data.weather[0].main === "Clear" && icon === "01d") {
+      weather_container.style.backgroundImage = "url(./assets/img/clear.gif)";
+      // night
+    } else if (data.weather[0].main === "Clear" && icon === "01n") {
+      weather_container.style.backgroundImage =
+        "url(./assets/img/clear_night.gif)";
+    }
+    // clouds
+    //day
+    else if (data.weather[0].main === "Clouds" && icon === "02d") {
+      weather_container.style.backgroundImage = "url(./assets/img/clouds.gif)";
+    } else if (data.weather[0].main === "Clouds" && icon === "03d") {
+      weather_container.style.backgroundImage =
+        "url(./assets/img/clouds_night.gif)";
+    } else if (data.weather[0].main === "Clouds" && icon === "04d") {
+      weather_container.style.backgroundImage =
+        "url(./assets/img/broken_clouds.gif)";
+    }
+    //night
+    else if (data.weather[0].main === "Clouds" && icon === "02n") {
+      weather_container.style.backgroundImage =
+        "url(./assets/img/moon_and_clouds.gif)";
+    } else if (
+      (data.weather[0].main === "Clouds" && icon === "04n") ||
+      (data.weather[0].main === "Clouds" && icon === "03n")
+    ) {
+      weather_container.style.backgroundImage =
+        "url(./assets/img/clouds_night.gif)";
+      //rain
+    } else if (data.weather[0].main === "Rain" && icon === "10d") {
+      weather_container.style.backgroundImage =
+        "url(./assets/img/rainy_day.gif)";
+    } else if (data.weather[0].main === "Rain" && icon === "10n") {
+      weather_container.style.backgroundImage =
+        "url(./assets/img/rainy_day.gif)";
+    } else if (data.weather[0].main === "Thunderstorm" && icon === "11n") {
+      weather_container.style.backgroundImage =
+        "url(./assets/img/storm_night.gif)";
+    } else if (data.weather[0].main === "Thunderstorm" && icon === "11d") {
+      weather_container.style.backgroundImage =
+        "url(./assets/img/storm_day.gif)";
+    } else if (data.weather[0].main === "Snow") {
+      weather_container.style.backgroundImage = "url(./assets/img/snow.gif)";
+    } else if (data.weather[0].main === "Mist") {
+      weather_container.style.backgroundImage = "url(./assets/img/mist.gif)";
+    }
+    console.log(icon);
+    console.log(data.weather[0].main);
+
     city.innerHTML = `<p>${name}</p>`;
     weather_icon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
     select_city.setAttribute("hidden", "");
