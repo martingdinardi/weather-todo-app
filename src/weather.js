@@ -82,13 +82,13 @@ let weather = {
 city.addEventListener("click", () => {
   city.setAttribute("hidden", "");
   select_city.removeAttribute("hidden", "");
+  select_city.firstElementChild.firstElementChild.value = "";
   select_city.children[0].focus();
 });
 
 checkIcon.addEventListener("click", async () => {
   const selectedCity = select_city.firstElementChild.firstElementChild.value;
   await weather.fetchWeather(selectedCity);
-  /* await weather.displayWeather(); */
 });
 
 if (localStorage.getItem("Selected City")) {
