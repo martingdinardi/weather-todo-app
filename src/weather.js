@@ -92,8 +92,8 @@ checkIcon.addEventListener("click", async () => {
 });
 
 document.addEventListener("keypress", async (e) => {
-  /* console.log(e.code); */
-  if (e.code === "Enter" || e.code === "Return") {
+  console.log(e.keyCode);
+  if (e.keyCode === "13" || e.key === "Enter") {
     const selectedCity = select_city.firstElementChild.firstElementChild.value;
     await weather.fetchWeather(selectedCity);
   }
