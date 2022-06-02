@@ -392,11 +392,12 @@ animation-fill-mode: forwards;
 }
 
 .icons-to-select{
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .icons-to-select-items{
   display: flex;
+  flex-flow: wrap;
 }
 
 .icon-to-select{
@@ -405,6 +406,7 @@ animation-fill-mode: forwards;
     align-items: center;
     /* justify-content: center; */
     filter: invert(86%) sepia(5%) saturate(18%) hue-rotate(314deg) brightness(84%) contrast(79%);
+    margin-bottom: 0.5rem;
 }
 
 .icon-to-select:hover{
