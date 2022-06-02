@@ -110,6 +110,8 @@ create_todo_confirm.addEventListener("click", (e) => {
     todoList.nuevoTodo(nuevoTodo);
     const elementoCreado = crearTodoHtml(nuevoTodo);
     no_todo_container.setAttribute("hidden", "");
+    title_input.value = "";
+    create_todo_description.value = "";
     if (completeIsPressed == true) {
       elementoCreado.setAttribute("hidden", "");
       if (elementosCompletados == 0) {
