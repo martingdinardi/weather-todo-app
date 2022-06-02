@@ -93,7 +93,7 @@ checkIcon.addEventListener("click", async () => {
 
 document.addEventListener("keypress", async (e) => {
   /* console.log(e.code); */
-  if (e.code === "Enter") {
+  if (e.code === "Enter" || e.code === "NumapadEnter") {
     const selectedCity = select_city.firstElementChild.firstElementChild.value;
     await weather.fetchWeather(selectedCity);
   }
