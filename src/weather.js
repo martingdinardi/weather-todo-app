@@ -4,6 +4,7 @@ const checkIcon = document.querySelector(".check-icon");
 const location_weather = document.querySelector(".location-weather");
 const weather_icon = document.querySelector(".weather-icon");
 const weather_container = document.querySelector(".weather-container");
+const temp_p = document.querySelector(".temp");
 //.weather-container
 
 let weather = {
@@ -20,6 +21,10 @@ let weather = {
   displayWeather: async function (data) {
     const { name } = data;
     const { icon } = data.weather[0];
+    const { temp } = data.main;
+    const fullCelsius = temp - 273;
+    const tempCelsius = fullCelsius.toString().substring(0, 4);
+    temp_p.innerHTML = `${tempCelsius}°C`;
 
     // clear
     // day
@@ -69,8 +74,6 @@ let weather = {
     } else if (data.weather[0].main === "Mist") {
       weather_container.style.backgroundImage = "url(./assets/img/mist.gif)";
     }
-    console.log(icon);
-    console.log(data.weather[0].main);
 
     city.innerHTML = `<p>${name}</p>`;
     weather_icon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
@@ -92,7 +95,6 @@ checkIcon.addEventListener("click", async () => {
 });
 
 document.addEventListener("keypress", async (e) => {
-  console.log(e.keyCode);
   if (e.keyCode === "13" || e.key === "Enter") {
     const selectedCity = select_city.firstElementChild.firstElementChild.value;
     await weather.fetchWeather(selectedCity);
@@ -101,6 +103,5 @@ document.addEventListener("keypress", async (e) => {
 
 if (localStorage.getItem("Selected City")) {
   const selectedCitySaved = localStorage.getItem("Selected City");
-  console.log(selectedCitySaved);
   weather.fetchWeather(selectedCitySaved);
 }

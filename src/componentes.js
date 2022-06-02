@@ -67,7 +67,6 @@ export const crearTodoHtml = (todo) => {
 
 //Events
 window.addEventListener("load", () => {
-  console.log(elementosPendientes);
   elementosPendientes > 0 ? no_todo_container.setAttribute("hidden", "") : "";
   const dateToday = today.toUTCString().split(" ");
   const updateTime = () => {
@@ -110,7 +109,6 @@ create_todo_confirm.addEventListener("click", (e) => {
     );
     todoList.nuevoTodo(nuevoTodo);
     const elementoCreado = crearTodoHtml(nuevoTodo);
-    /* console.log(elementoCreado.children[0]); */
     no_todo_container.setAttribute("hidden", "");
     if (completeIsPressed == true) {
       elementoCreado.setAttribute("hidden", "");
@@ -121,7 +119,6 @@ create_todo_confirm.addEventListener("click", (e) => {
     create_todo_container.setAttribute("hidden", "");
   }
   /* elementosPendientes++; */
-  console.log(`elementosPendientes = ${elementosPendientes}`);
 });
 
 todo_container.addEventListener("click", (e) => {
@@ -146,8 +143,6 @@ todo_container.addEventListener("click", (e) => {
         no_todo_container.removeAttribute("hidden");
       }
     }
-    console.log(`elementosCompletados = ${elementosCompletados}`);
-    console.log(`elementosPendientes = ${elementosPendientes}`);
   } else if (elemento == "trash-ico") {
     const elementoid =
       e.target.parentElement.parentElement.parentElement.getAttribute(
@@ -157,13 +152,12 @@ todo_container.addEventListener("click", (e) => {
     todo_container.removeChild(todoElemento);
     if (completeIsPressed == true) {
       elementosCompletados--;
-      console.log(elementosCompletados);
       if (elementosCompletados == 0) {
         no_todo_container.removeAttribute("hidden");
       }
     } else if (completeIsPressed == false) {
       elementosPendientes--;
-      console.log(elementosPendientes);
+
       if (elementosPendientes == 0) {
         no_todo_container.removeAttribute("hidden");
       }
@@ -173,8 +167,7 @@ todo_container.addEventListener("click", (e) => {
 
 complete_button.addEventListener("click", () => {
   completeIsPressed = true;
-  console.log(`elementos completados = ${elementosCompletados}`);
-  console.log(`elementos pendientes = ${elementosPendientes}`);
+
   delete_all_todos_container.removeAttribute("hidden");
   if (elementosCompletados > 0) {
     no_todo_container.setAttribute("hidden", "");
@@ -206,8 +199,6 @@ complete_button.addEventListener("click", () => {
 
 pending_button.addEventListener("click", (e) => {
   completeIsPressed = false;
-  console.log(`elementos completados = ${elementosCompletados}`);
-  console.log(`elementos pendientes = ${elementosPendientes}`);
   if (elementosPendientes > 0) {
     no_todo_container.setAttribute("hidden", "");
   }
@@ -242,7 +233,6 @@ pending_button.addEventListener("click", (e) => {
 delete_all_todos_container.addEventListener("click", () => {
   todoList.eliminarCompletados();
   elementosCompletados = 0;
-  console.log(elementosCompletados);
   no_todo_container.removeAttribute("hidden");
   for (let i = todo_container.children.length - 1; i >= 0; i--) {
     const elemento_padre = todo_container.children[i];
