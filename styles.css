@@ -304,13 +304,13 @@
   }
 
   .add-activity-title{
-    font-size: 1.2rem;;
+    font-size: 1.1rem;;
     font-family: system-ui;
     height: 3.5rem;
     /* text-align: center; */
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: baseline;
   }
 
   .create-todo-title, .create-todo-description{    width: 100%;
@@ -484,6 +484,6 @@ width: 6rem;
 
 .close-icon{
   width: 1.7rem;
-  filter: invert(100%) sepia(7%) saturate(0%) hue-rotate(207deg) brightness(117%) contrast(100%);
+  /*filter: invert(100%) sepia(7%) saturate(0%) hue-rotate(207deg) brightness(117%) contrast(100%); */
   cursor: pointer;
 }
