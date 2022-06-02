@@ -91,6 +91,14 @@ checkIcon.addEventListener("click", async () => {
   await weather.fetchWeather(selectedCity);
 });
 
+document.addEventListener("keypress", async (e) => {
+  /* console.log(e.code); */
+  if (e.code === "Enter") {
+    const selectedCity = select_city.firstElementChild.firstElementChild.value;
+    await weather.fetchWeather(selectedCity);
+  }
+});
+
 if (localStorage.getItem("Selected City")) {
   const selectedCitySaved = localStorage.getItem("Selected City");
   console.log(selectedCitySaved);
