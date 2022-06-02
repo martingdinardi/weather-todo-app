@@ -19,6 +19,8 @@ const pending_button = document.querySelector(".pending");
 const delete_all_todos_container = document.querySelector(
   ".delete-all-todos-container"
 );
+
+const close_icon = document.querySelector(".close-icon");
 const time = document.querySelector(".time");
 const date = document.querySelector(".date");
 let today = new Date();
@@ -121,6 +123,10 @@ create_todo_confirm.addEventListener("click", (e) => {
     create_todo_container.setAttribute("hidden", "");
   }
   /* elementosPendientes++; */
+});
+
+close_icon.addEventListener("click", () => {
+  create_todo_container.setAttribute("hidden", "");
 });
 
 todo_container.addEventListener("click", (e) => {
